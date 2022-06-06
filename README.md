@@ -1,7 +1,7 @@
 # Choco Up coding test (Frontend react developer)
 
 ## Background
-This is a test aims to test different area of your knowledge and skill.  Please clone the codebase to start your development and commit all codes to your repo.
+This is a test aims to test different area of your knowledge and skill.  Please commit all codes to your repo and provide us the url after commit all codes.
 
 ## Requirement 
 You are required to build a simlpe application with the following UI
