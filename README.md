@@ -1,7 +1,7 @@
-# Choco Up coding test (Frontend developer)
+# Choco Up coding test (Frontend react developer)
 
 ## Background
-This is a test aims to test different area of your knowledge and skill.  Please fork or download the codebase to start your development.
+This is a test aims to test different area of your knowledge and skill.  Please clone the codebase to start your development and commit all codes to your repo.
 
 ## Requirement 
 You are required to build a simlpe application with the following UI
@@ -62,9 +62,6 @@ API endpoint: https://random-data-api.com/api/commerce/random_commerce
     }
 ]
 ```
-
-## Note
-
 
 ## Bonus
 Depends on your capability, you can choose to add any of the following feature as extra, or any other reasonable add-ons.
