@@ -11,7 +11,7 @@ You are required to build a simlpe application with the following UI
 - The standard font size will be 12px
 - You are not needed to follow all exact font size and margin/padding size
 - Your app should be ready for production and can be run or deploy easily
-- A README of documentation describing if you have to make any technicial decision
+- A README or documentation describing if you have to make any technicial decision, i.e any tools or frameworks or libraries to use
 
 ### UI sample:
 ![sample-ui](./sample_ui.png)
