@@ -1,6 +1,13 @@
 import { extendTheme } from '@chakra-ui/react';
 
 const theme = extendTheme({
+  styles: {
+    global: {
+      html: {
+        fontSize: '12px',
+      },
+    },
+  },
   colors: {
     primary: {
       400: '#3A0CA2',
@@ -14,13 +21,19 @@ const theme = extendTheme({
   },
   components: {
     Text: {
-      fontSize: '12px',
+      baseStyle: {
+        fontSize: '1rem',
+      },
     },
     Button: {
       variants: {
         outline: {
           borderColor: 'border',
+          background: 'white',
         },
+      },
+      baseStyle: {
+        fontWeight: 'normal',
       },
     },
   },
