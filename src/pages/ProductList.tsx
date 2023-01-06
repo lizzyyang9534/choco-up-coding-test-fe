@@ -4,8 +4,10 @@ import {
   Divider,
   Flex,
   Heading,
+  IconButton,
   SimpleGrid,
 } from '@chakra-ui/react';
+import { ArrowUpIcon, ArrowDownIcon } from '@chakra-ui/icons';
 import ProductCard from '../components/ProductCard';
 import { useMachine } from '@xstate/react';
 import {
@@ -25,8 +27,15 @@ const ProductList = () => {
       ? products
       : productsByDepartment[selectedDepartment];
 
+  const scrollTo = (direction: 'top' | 'bottom') => {
+    window.scrollTo({
+      top: direction === 'top' ? 0 : document.body.scrollHeight,
+      behavior: 'smooth',
+    });
+  };
+
   return (
-    <Box py={10} px={[8, 12, 20]}>
+    <Box mx="auto" py={10} px={8} maxW="1400px">
       <Heading fontSize="5xl" fontWeight="semibold">
         Product List
       </Heading>
@@ -51,13 +60,28 @@ const ProductList = () => {
             ))}
         </Flex>
         <Divider mt={8} borderColor="border" />
-        <SimpleGrid columns={[1, 2, 3]} mt={10} spacing={8}>
+        <SimpleGrid columns={[1, 1, 2, 3]} mt={10} spacing={8}>
           {state.matches(PRODUCT_LIST_STATE.IDLE) &&
             productList.map((product) => (
               <ProductCard key={product.id} product={product} />
             ))}
         </SimpleGrid>
       </Box>
+
+      <Flex direction="column" gap={2} pos="fixed" right={10} bottom={10}>
+        <IconButton
+          size="lg"
+          aria-label="go top"
+          icon={<ArrowUpIcon />}
+          onClick={() => scrollTo('top')}
+        />
+        <IconButton
+          size="lg"
+          aria-label="go bottom"
+          icon={<ArrowDownIcon />}
+          onClick={() => scrollTo('bottom')}
+        />
+      </Flex>
     </Box>
   );
 };
