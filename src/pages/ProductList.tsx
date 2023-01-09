@@ -69,19 +69,20 @@ const ProductList = () => {
             ))
           )}
         </SimpleGrid>
-        {!state.matches(PRODUCT_LIST_STATE.LOADING) && (
-          <Flex mt={6} justify="center">
-            <Button
-              size="lg"
-              colorScheme="primary"
-              loadingText="Loading"
-              isLoading={state.matches(PRODUCT_LIST_STATE.LOADING_MORE)}
-              onClick={() => send({ type: PRODUCT_LIST_EVENT.LOAD_MORE })}
-            >
-              Load More
-            </Button>
-          </Flex>
-        )}
+        {selectedDepartment === OVERVIEW &&
+          !state.matches(PRODUCT_LIST_STATE.LOADING) && (
+            <Flex mt={6} justify="center">
+              <Button
+                size="lg"
+                colorScheme="primary"
+                loadingText="Loading"
+                isLoading={state.matches(PRODUCT_LIST_STATE.LOADING_MORE)}
+                onClick={() => send({ type: PRODUCT_LIST_EVENT.LOAD_MORE })}
+              >
+                Load More
+              </Button>
+            </Flex>
+          )}
       </Box>
 
       <Flex direction="column" gap={2} pos="fixed" right={10} bottom={10}>
