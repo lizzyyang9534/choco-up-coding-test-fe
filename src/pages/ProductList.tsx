@@ -4,10 +4,8 @@ import {
   Divider,
   Flex,
   Heading,
-  IconButton,
   SimpleGrid,
 } from '@chakra-ui/react';
-import { ArrowUpIcon, ArrowDownIcon } from '@chakra-ui/icons';
 import ProductCard from '../components/ProductCard';
 import { useMachine } from '@xstate/react';
 import {
@@ -19,6 +17,8 @@ import { useState } from 'react';
 import { OVERVIEW } from '../constants/productList';
 import LoadingCard from '../components/LoadingCard';
 import * as R from 'ramda';
+import TopButton from '../components/TopButton';
+import BottomButton from '../components/BottomButton';
 
 const ProductList = () => {
   const [state, send] = useMachine(productListMachine);
@@ -87,18 +87,8 @@ const ProductList = () => {
       </Box>
 
       <Flex direction="column" gap={2} pos="fixed" right={10} bottom={10}>
-        <IconButton
-          size="lg"
-          aria-label="go top"
-          icon={<ArrowUpIcon />}
-          onClick={() => scrollTo('top')}
-        />
-        <IconButton
-          size="lg"
-          aria-label="go bottom"
-          icon={<ArrowDownIcon />}
-          onClick={() => scrollTo('bottom')}
-        />
+        <TopButton onClick={() => scrollTo('top')} />
+        <BottomButton onClick={() => scrollTo('bottom')} />
       </Flex>
     </Box>
   );
