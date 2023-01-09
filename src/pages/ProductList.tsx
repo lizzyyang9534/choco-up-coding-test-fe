@@ -43,7 +43,7 @@ const ProductList = () => {
         Product List
       </Heading>
       <Box mt={6} p={10} bgColor="background">
-        <Flex gap={6} wrap="wrap">
+        <Flex gap={6} overflowX="auto">
           {departments.map((department) => (
             <Button
               key={department}
@@ -53,6 +53,7 @@ const ProductList = () => {
               variant={selectedDepartment === department ? 'solid' : 'outline'}
               size="lg"
               borderRadius="full"
+              flexShrink="0"
               onClick={() => setSelectedDepartment(department)}
             >
               {department}
