@@ -66,7 +66,9 @@ const productListMachine = createMachine<ProductListContext>(
       }),
       assignDepartments: assign({
         departments: ({ productsByDepartment }) =>
-          [OVERVIEW].concat(Object.keys(productsByDepartment)),
+          [OVERVIEW].concat(
+            R.sortBy(R.toLower, Object.keys(productsByDepartment))
+          ),
       }),
       concatProducts: assign({
         products: ({ products }, event) => products.concat(event.data),
