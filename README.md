@@ -1,78 +1,24 @@
-# Choco Up coding test (Frontend react developer)
+## Preview This App
+- [Preview Site](https://choco-up-coding-test-fe.netlify.app/)
+- [CodeSandbox](https://codesandbox.io/p/github/lizzyyang9534/choco-up-coding-test-fe/main?file=%2FREADME.md&workspace=%257B%2522activeFileId%2522%253A%2522clcocl21h000v7rhfcvaxaeir%2522%252C%2522openFiles%2522%253A%255B%2522%252FREADME.md%2522%255D%252C%2522sidebarPanel%2522%253A%2522EXPLORER%2522%252C%2522gitSidebarPanel%2522%253A%2522COMMIT%2522%252C%2522spaces%2522%253A%257B%2522clcocl5b0000x3b6fd1u83zrj%2522%253A%257B%2522key%2522%253A%2522clcocl5b0000x3b6fd1u83zrj%2522%252C%2522name%2522%253A%2522Default%2522%252C%2522devtools%2522%253A%255B%257B%2522type%2522%253A%2522PREVIEW%2522%252C%2522taskId%2522%253A%2522start%2522%252C%2522port%2522%253A3000%252C%2522key%2522%253A%2522clcocm3lj00bs3b6fsvzi5zey%2522%252C%2522isMinimized%2522%253Afalse%257D%252C%257B%2522type%2522%253A%2522TASK_LOG%2522%252C%2522taskId%2522%253A%2522start%2522%252C%2522key%2522%253A%2522clcocm11x009b3b6fmoc8j0n1%2522%252C%2522isMinimized%2522%253Afalse%257D%255D%257D%257D%252C%2522currentSpace%2522%253A%2522clcocl5b0000x3b6fd1u83zrj%2522%252C%2522spacesOrder%2522%253A%255B%2522clcocl5b0000x3b6fd1u83zrj%2522%255D%257D)
 
-## Background
-This is a test aims to test different area of your knowledge and skill.  Please commit all codes to your repo and provide us the url after commit all codes.
+## Run It Locally
+Run command `yarn` for installing node modules and run `yarn start` for starting this app
 
-## Requirement 
-You are required to build a simlpe application with the following UI
-- Fetch a minimum of 20 records from the API and display the data as the UI
-- Show `Overview` and all department data as a rounded button, clicking buttons will only show related department, while `Overview` will reset the display to all departments
-- The `View` link/button does not require any action, the font color is `rgb(229, 104, 36)`
-- The standard font size will be 12px
-- You are not needed to follow all exact font size and margin/padding size
-- Your app should be ready for production and can be run or deploy easily
-- A README or documentation describing if you have to make any technicial decision, i.e any tools or frameworks or libraries to use
+## Used Framework and Libraries
+### Framework
+- React.js
 
-### UI sample:
-![sample-ui](./sample_ui.png)
-
-### Data
-We will use Random Data API to get the list of data to display
-
-Documentation: https://random-data-api.com/documentation
-
-API endpoint: https://random-data-api.com/api/commerce/random_commerce
-
-### Data sample:
-
-```json
-[
-    {
-        "id": 4768,
-        "uid": "43af5392-9d49-4daa-a00c-7addb60f972d",
-        "color": "cerulean",
-        "department": "Industrial \u0026 Home",
-        "material": "Aluminum",
-        "product_name": "Enormous Concrete Computer",
-        "price": 1.32,
-        "price_string": "3.98",
-        "promo_code": "SpecialCode304938"
-    },
-    {
-        "id": 4103,
-        "uid": "a8ebf345-965c-40fa-9aea-dea971a188d3",
-        "color": "scarlet",
-        "department": "Jewelry",
-        "material": "Wooden",
-        "product_name": "Sleek Iron Wallet",
-        "price": 96.47,
-        "price_string": "1.13",
-        "promo_code": "SweetDiscount494205"
-    },
-    {
-        "id": 9451,
-        "uid": "75b29c5e-3e73-443b-8ae9-314a4ca566ba",
-        "color": "carmine",
-        "department": "Sports",
-        "material": "Copper",
-        "product_name": "Practical Wooden Knife",
-        "price": 96.67,
-        "price_string": "3.77",
-        "promo_code": "KillerPromotion142660"
-    }
-]
-```
-
-## Bonus
-Depends on your capability, you can choose to add any of the following feature as extra, or any other reasonable add-ons.
-- Use Typescript on the development
-- Show more data by:
-  - pagination
-  - load more button at the bottom
-  - scroll to the bottom
-- Responsive
-- Any transition or loading effect 
-
-
-
-
+### Libraries
+- [Chakra UI](https://chakra-ui.com/)
+  - The Chakra components allow us to highly customize
+  - It provides a simple and clean way to make responsive style, ex. `<Box  width={['100%', '50%', '25%']} />`
+  - We can reduce duplicate styles by defining variants of components in theme file
+- [XState](https://xstate.js.org/)
+  - It's easy to write and read the flow
+  - The [visualizer](https://stately.ai/viz) can help us create a chart to clarify the flow
+    ![image](https://user-images.githubusercontent.com/16132774/211271982-ff0635b9-5bcd-45b9-ab39-83a74acc2cdb.png)
+  - Machines are reusable
+- [Ramda](https://ramdajs.com/)
+  - It contains many useful functions so that we can write the logic in a clean and readable way
+  - It's convenient to make compositions of functions as utilities
