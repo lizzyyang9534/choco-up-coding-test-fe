@@ -16,6 +16,7 @@ import {
 } from '../machines/productListMachine';
 import { useState } from 'react';
 import { OVERVIEW } from '../constants/productList';
+import LoadingCard from '../components/LoadingCard';
 
 const ProductList = () => {
   const [state] = useMachine(productListMachine);
@@ -41,30 +42,30 @@ const ProductList = () => {
       </Heading>
       <Box mt={6} p={10} bgColor="background">
         <Flex gap={6} wrap="wrap">
-          {state.matches(PRODUCT_LIST_STATE.IDLE) &&
-            departments.map((department) => (
-              <Button
-                key={department}
-                colorScheme={
-                  selectedDepartment === department ? 'primary' : undefined
-                }
-                variant={
-                  selectedDepartment === department ? 'solid' : 'outline'
-                }
-                size="lg"
-                borderRadius="full"
-                onClick={() => setSelectedDepartment(department)}
-              >
-                {department}
-              </Button>
-            ))}
+          {departments.map((department) => (
+            <Button
+              key={department}
+              colorScheme={
+                selectedDepartment === department ? 'primary' : undefined
+              }
+              variant={selectedDepartment === department ? 'solid' : 'outline'}
+              size="lg"
+              borderRadius="full"
+              onClick={() => setSelectedDepartment(department)}
+            >
+              {department}
+            </Button>
+          ))}
         </Flex>
         <Divider mt={8} borderColor="border" />
         <SimpleGrid columns={[1, 1, 2, 3]} mt={10} spacing={8}>
-          {state.matches(PRODUCT_LIST_STATE.IDLE) &&
+          {state.matches(PRODUCT_LIST_STATE.LOADING) ? (
+            <LoadingCard />
+          ) : (
             productList.map((product) => (
               <ProductCard key={product.id} product={product} />
-            ))}
+            ))
+          )}
         </SimpleGrid>
       </Box>
 

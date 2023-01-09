@@ -20,6 +20,11 @@ type ProductListContext = {
 
 const productListMachine = createMachine<ProductListContext>(
   {
+    context: {
+      products: [],
+      productsByDepartment: {},
+      departments: [OVERVIEW],
+    },
     initial: STATE.LOADING,
     states: {
       [STATE.LOADING]: {
@@ -42,10 +47,8 @@ const productListMachine = createMachine<ProductListContext>(
           R.groupBy(R.prop('department'), event.data),
       }),
       assignDepartments: assign({
-        departments: ({ productsByDepartment }) => [
-          OVERVIEW,
-          ...Object.keys(productsByDepartment),
-        ],
+        departments: ({ departments, productsByDepartment }) =>
+          departments.concat(Object.keys(productsByDepartment)),
       }),
     },
     services: {
