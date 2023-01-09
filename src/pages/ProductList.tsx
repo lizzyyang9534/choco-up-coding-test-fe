@@ -18,6 +18,7 @@ import {
 import { useState } from 'react';
 import { OVERVIEW } from '../constants/productList';
 import LoadingCard from '../components/LoadingCard';
+import * as R from 'ramda';
 
 const ProductList = () => {
   const [state, send] = useMachine(productListMachine);
@@ -61,7 +62,7 @@ const ProductList = () => {
         <Divider mt={8} borderColor="border" />
         <SimpleGrid columns={[1, 1, 2, 3]} mt={10} spacing={8}>
           {state.matches(PRODUCT_LIST_STATE.LOADING) ? (
-            <LoadingCard />
+            <>{R.repeat(<LoadingCard />, 3)}</>
           ) : (
             productList.map((product) => (
               <ProductCard key={product.id} product={product} />
