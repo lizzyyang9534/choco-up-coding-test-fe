@@ -12,6 +12,7 @@ import ProductCard from '../components/ProductCard';
 import { useMachine } from '@xstate/react';
 import {
   productListMachine,
+  PRODUCT_LIST_EVENT,
   PRODUCT_LIST_STATE,
 } from '../machines/productListMachine';
 import { useState } from 'react';
@@ -19,7 +20,7 @@ import { OVERVIEW } from '../constants/productList';
 import LoadingCard from '../components/LoadingCard';
 
 const ProductList = () => {
-  const [state] = useMachine(productListMachine);
+  const [state, send] = useMachine(productListMachine);
   const { products, departments, productsByDepartment } = state.context;
   const [selectedDepartment, setSelectedDepartment] =
     useState<string>(OVERVIEW);
@@ -67,6 +68,19 @@ const ProductList = () => {
             ))
           )}
         </SimpleGrid>
+        {!state.matches(PRODUCT_LIST_STATE.LOADING) && (
+          <Flex mt={6} justify="center">
+            <Button
+              size="lg"
+              colorScheme="primary"
+              loadingText="Loading"
+              isLoading={state.matches(PRODUCT_LIST_STATE.LOADING_MORE)}
+              onClick={() => send({ type: PRODUCT_LIST_EVENT.LOAD_MORE })}
+            >
+              Load More
+            </Button>
+          </Flex>
+        )}
       </Box>
 
       <Flex direction="column" gap={2} pos="fixed" right={10} bottom={10}>

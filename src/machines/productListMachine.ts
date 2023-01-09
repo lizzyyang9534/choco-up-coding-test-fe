@@ -8,9 +8,12 @@ const DEFAULT_PAGE_SIZE = 20;
 enum STATE {
   LOADING = 'LOADING',
   IDLE = 'IDLE',
+  LOADING_MORE = 'LOADING_MORE',
 }
 
-enum EVENT {}
+enum EVENT {
+  LOAD_MORE = 'LOAD_MORE',
+}
 
 type ProductListContext = {
   products: Product[];
@@ -36,7 +39,22 @@ const productListMachine = createMachine<ProductListContext>(
           },
         },
       },
-      [STATE.IDLE]: {},
+      [STATE.IDLE]: {
+        on: {
+          [EVENT.LOAD_MORE]: {
+            target: STATE.LOADING_MORE,
+          },
+        },
+      },
+      [STATE.LOADING_MORE]: {
+        invoke: {
+          src: 'fetchCommerceData',
+          onDone: {
+            target: STATE.IDLE,
+            actions: ['concatProducts', 'assignDepartments'],
+          },
+        },
+      },
     },
   },
   {
@@ -47,8 +65,17 @@ const productListMachine = createMachine<ProductListContext>(
           R.groupBy(R.prop('department'), event.data),
       }),
       assignDepartments: assign({
-        departments: ({ departments, productsByDepartment }) =>
-          departments.concat(Object.keys(productsByDepartment)),
+        departments: ({ productsByDepartment }) =>
+          [OVERVIEW].concat(Object.keys(productsByDepartment)),
+      }),
+      concatProducts: assign({
+        products: ({ products }, event) => products.concat(event.data),
+        productsByDepartment: ({ productsByDepartment }, event) =>
+          R.mergeWith(
+            R.concat,
+            productsByDepartment,
+            R.groupBy(R.prop<string>('department'), event.data)
+          ),
       }),
     },
     services: {
