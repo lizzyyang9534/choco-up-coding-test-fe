@@ -5,13 +5,13 @@ import { OVERVIEW } from '../constants/productList';
 
 const DEFAULT_PAGE_SIZE = 20;
 
-enum STATE {
+enum State {
   LOADING = 'LOADING',
   IDLE = 'IDLE',
   LOADING_MORE = 'LOADING_MORE',
 }
 
-enum EVENT {
+enum Event {
   LOAD_MORE = 'LOAD_MORE',
 }
 
@@ -28,29 +28,29 @@ const productListMachine = createMachine<ProductListContext>(
       productsByDepartment: {},
       departments: [OVERVIEW],
     },
-    initial: STATE.LOADING,
+    initial: State.LOADING,
     states: {
-      [STATE.LOADING]: {
+      [State.LOADING]: {
         invoke: {
           src: 'fetchCommerceData',
           onDone: {
-            target: STATE.IDLE,
+            target: State.IDLE,
             actions: ['assignProducts', 'assignDepartments'],
           },
         },
       },
-      [STATE.IDLE]: {
+      [State.IDLE]: {
         on: {
-          [EVENT.LOAD_MORE]: {
-            target: STATE.LOADING_MORE,
+          [Event.LOAD_MORE]: {
+            target: State.LOADING_MORE,
           },
         },
       },
-      [STATE.LOADING_MORE]: {
+      [State.LOADING_MORE]: {
         invoke: {
           src: 'fetchCommerceData',
           onDone: {
-            target: STATE.IDLE,
+            target: State.IDLE,
             actions: ['concatProducts', 'assignDepartments'],
           },
         },
@@ -88,6 +88,6 @@ const productListMachine = createMachine<ProductListContext>(
 );
 export {
   productListMachine,
-  STATE as PRODUCT_LIST_STATE,
-  EVENT as PRODUCT_LIST_EVENT,
+  State as PRODUCT_LIST_STATE,
+  Event as PRODUCT_LIST_EVENT,
 };
