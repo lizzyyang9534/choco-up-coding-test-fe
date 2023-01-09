@@ -108,7 +108,14 @@ const ProductList = () => {
         <Divider mt={8} borderColor="border" />
         <SimpleGrid columns={[1, 1, 2, 3]} mt={10} spacing={8}>
           {state.matches(PRODUCT_LIST_STATE.LOADING) ? (
-            <>{R.repeat(<LoadingCard />, 3)}</>
+            <>
+              {R.times(
+                (i) => (
+                  <LoadingCard key={`loading_card${i}`} />
+                ),
+                3
+              )}
+            </>
           ) : (
             productList.map((product) => (
               <ProductCard key={product.id} product={product} />
