@@ -93,6 +93,7 @@ const ProductList = () => {
                     selectedDepartment === department ? 'solid' : 'outline'
                   }
                   size="lg"
+                  fontSize="1.25rem"
                   borderRadius="full"
                   onClick={() => setSelectedDepartment(department)}
                 >
