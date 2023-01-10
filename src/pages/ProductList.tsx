@@ -39,11 +39,10 @@ const ProductList = () => {
       : productsByDepartment[selectedDepartment];
 
   const departmentsRef = useRef<HTMLDivElement>(null);
-  const [showAllDepartments, setShowAllDepartments] = useState(false);
+  const [expanded, setExpanded] = useState(false);
   const [enabledExpand, setEnabledExpand] = useState(false);
 
-  const handleToggleDepartments = () =>
-    setShowAllDepartments(!showAllDepartments);
+  const toggleDepartments = () => setExpanded(!expanded);
 
   const handleScrolledToBottom = useCallback(() => {
     if (
@@ -78,10 +77,7 @@ const ProductList = () => {
       </Heading>
       <Box mt={6} p={10} bgColor="background">
         <Flex justify="space-between">
-          <Collapse
-            startingHeight={DEPARTMENT_CONTAINER_HEIGHT}
-            in={showAllDepartments}
-          >
+          <Collapse startingHeight={DEPARTMENT_CONTAINER_HEIGHT} in={expanded}>
             <Flex ref={departmentsRef} gap={6} wrap="wrap" flex="1">
               {departments.map((department) => (
                 <Button
@@ -103,16 +99,14 @@ const ProductList = () => {
             </Flex>
           </Collapse>
           {
-            <Tooltip label={showAllDepartments ? 'Collapse' : 'Expand'}>
+            <Tooltip label={expanded ? 'Collapse' : 'Expand'}>
               <IconButton
                 variant="outline"
                 size="lg"
                 aria-label="expand or collapse"
-                icon={
-                  showAllDepartments ? <ChevronUpIcon /> : <ChevronDownIcon />
-                }
+                icon={expanded ? <ChevronUpIcon /> : <ChevronDownIcon />}
                 isDisabled={!enabledExpand}
-                onClick={handleToggleDepartments}
+                onClick={toggleDepartments}
               />
             </Tooltip>
           }
