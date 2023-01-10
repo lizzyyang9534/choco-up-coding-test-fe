@@ -3,7 +3,7 @@ import { Product } from '../types/product';
 import * as R from 'ramda';
 import { OVERVIEW } from '../constants/productList';
 
-const DEFAULT_PAGE_SIZE = 21;
+const DEFAULT_PAGE_SIZE = 20;
 
 enum State {
   LOADING = 'LOADING',

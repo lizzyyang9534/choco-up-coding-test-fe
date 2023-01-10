@@ -1,12 +1,14 @@
 import {
   Box,
   Button,
+  Center,
   Collapse,
   Divider,
   Flex,
   Heading,
   IconButton,
   SimpleGrid,
+  Spinner,
   Tooltip,
 } from '@chakra-ui/react';
 import { ChevronUpIcon, ChevronDownIcon } from '@chakra-ui/icons';
@@ -17,7 +19,7 @@ import {
   PRODUCT_LIST_EVENT,
   PRODUCT_LIST_STATE,
 } from '../machines/productListMachine';
-import { useEffect, useRef, useState } from 'react';
+import { useCallback, useEffect, useRef, useState } from 'react';
 import { OVERVIEW } from '../constants/productList';
 import LoadingCard from '../components/LoadingCard';
 import * as R from 'ramda';
@@ -29,6 +31,7 @@ const DEPARTMENT_CONTAINER_HEIGHT = 36;
 const ProductList = () => {
   const [state, send] = useMachine(productListMachine);
   const { products, departments, productsByDepartment } = state.context;
+
   const [selectedDepartment, setSelectedDepartment] =
     useState<string>(OVERVIEW);
   const productList =
@@ -49,6 +52,15 @@ const ProductList = () => {
       behavior: 'smooth',
     });
   };
+  const handleScrolledToBottom = useCallback(() => {
+    if (
+      selectedDepartment === OVERVIEW &&
+      !state.matches(PRODUCT_LIST_STATE.LOADING) &&
+      window.innerHeight + window.scrollY >= document.body.offsetHeight
+    ) {
+      send({ type: PRODUCT_LIST_EVENT.LOAD_MORE });
+    }
+  }, [selectedDepartment, send, state]);
 
   useEffect(() => {
     if (
@@ -60,6 +72,11 @@ const ProductList = () => {
       setShowExpandButton(true);
     }
   }, [showExpandButton, state]);
+
+  useEffect(() => {
+    window.addEventListener('scroll', handleScrolledToBottom);
+    return () => window.removeEventListener('scroll', handleScrolledToBottom);
+  }, [handleScrolledToBottom]);
 
   return (
     <Box mx="auto" py={10} px={8} maxW="1400px">
@@ -122,20 +139,11 @@ const ProductList = () => {
             ))
           )}
         </SimpleGrid>
-        {selectedDepartment === OVERVIEW &&
-          !state.matches(PRODUCT_LIST_STATE.LOADING) && (
-            <Flex mt={6} justify="center">
-              <Button
-                size="lg"
-                colorScheme="primary"
-                loadingText="Loading"
-                isLoading={state.matches(PRODUCT_LIST_STATE.LOADING_MORE)}
-                onClick={() => send({ type: PRODUCT_LIST_EVENT.LOAD_MORE })}
-              >
-                Load More
-              </Button>
-            </Flex>
-          )}
+        {state.matches(PRODUCT_LIST_STATE.LOADING_MORE) && (
+          <Center mt={6}>
+            <Spinner size="xl" />
+          </Center>
+        )}
       </Box>
 
       <Flex direction="column" gap={2} pos="fixed" right={10} bottom={10}>
