@@ -3,7 +3,8 @@
 - [CodeSandbox](https://codesandbox.io/p/github/lizzyyang9534/choco-up-coding-test-fe/main?file=%2FREADME.md&workspace=%257B%2522activeFileId%2522%253A%2522clcocl21h000v7rhfcvaxaeir%2522%252C%2522openFiles%2522%253A%255B%2522%252FREADME.md%2522%255D%252C%2522sidebarPanel%2522%253A%2522EXPLORER%2522%252C%2522gitSidebarPanel%2522%253A%2522COMMIT%2522%252C%2522spaces%2522%253A%257B%2522clcocl5b0000x3b6fd1u83zrj%2522%253A%257B%2522key%2522%253A%2522clcocl5b0000x3b6fd1u83zrj%2522%252C%2522name%2522%253A%2522Default%2522%252C%2522devtools%2522%253A%255B%257B%2522type%2522%253A%2522PREVIEW%2522%252C%2522taskId%2522%253A%2522start%2522%252C%2522port%2522%253A3000%252C%2522key%2522%253A%2522clcocm3lj00bs3b6fsvzi5zey%2522%252C%2522isMinimized%2522%253Afalse%257D%252C%257B%2522type%2522%253A%2522TASK_LOG%2522%252C%2522taskId%2522%253A%2522start%2522%252C%2522key%2522%253A%2522clcocm11x009b3b6fmoc8j0n1%2522%252C%2522isMinimized%2522%253Afalse%257D%255D%257D%257D%252C%2522currentSpace%2522%253A%2522clcocl5b0000x3b6fd1u83zrj%2522%252C%2522spacesOrder%2522%253A%255B%2522clcocl5b0000x3b6fd1u83zrj%2522%255D%257D)
 
 ## Run It Locally
-Run command `yarn` for installing node modules and run `yarn start` for starting this app
+1. Run command `yarn` for installing node modules
+1. Run `yarn start` for starting this app
 
 ## Used Framework and Libraries
 ### Framework
@@ -22,3 +23,11 @@ Run command `yarn` for installing node modules and run `yarn start` for starting
 - [Ramda](https://ramdajs.com/)
   - It contains many useful functions so that we can write the logic in a clean and readable way
   - It's convenient to make compositions of functions as utilities
+
+## UI/UX improvement
+### What I did
+- Because there might be many departments and occupy entire screen, I added a expand/collapse button to hide the departments after first line
+- Added a `Scroll to Top` button and a `Scroll to Bottom` button
+
+### Something could be improved (haven't implemented)
+- How to show the selected department which is collapsed
