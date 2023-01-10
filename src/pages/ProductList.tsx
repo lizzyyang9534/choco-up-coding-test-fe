@@ -105,6 +105,7 @@ const ProductList = () => {
           {
             <Tooltip label={showAllDepartments ? 'Collapse' : 'Expand'}>
               <IconButton
+                variant="outline"
                 size="lg"
                 aria-label="expand or collapse"
                 icon={

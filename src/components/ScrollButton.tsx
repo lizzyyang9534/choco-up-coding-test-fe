@@ -15,6 +15,8 @@ const ScrollButton = ({ direction }: ScrollButtonProps) => {
   return (
     <Tooltip label={`Scroll To ${direction}`} textTransform="capitalize">
       <IconButton
+        variant="outline"
+        colorScheme="blackAlpha"
         size="lg"
         aria-label={`go ${direction}`}
         icon={direction === 'top' ? <ArrowUpIcon /> : <ArrowDownIcon />}
