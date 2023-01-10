@@ -136,7 +136,7 @@ const ProductList = () => {
         </SimpleGrid>
         {state.matches(PRODUCT_LIST_STATE.LOADING_MORE) && (
           <Center mt={6}>
-            <Spinner size="xl" />
+            <Spinner size="xl" color="primary.500" />
           </Center>
         )}
       </Box>
