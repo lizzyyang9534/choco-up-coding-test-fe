@@ -41,7 +41,7 @@ const ProductList = () => {
 
   const departmentsRef = useRef<HTMLDivElement>(null);
   const [showAllDepartments, setShowAllDepartments] = useState(false);
-  const [showExpandButton, setShowExpandButton] = useState(false);
+  const [enabledExpand, setEnabledExpand] = useState(false);
 
   const handleToggleDepartments = () =>
     setShowAllDepartments(!showAllDepartments);
@@ -64,14 +64,14 @@ const ProductList = () => {
 
   useEffect(() => {
     if (
-      !showExpandButton &&
+      !enabledExpand &&
       state.matches(PRODUCT_LIST_STATE.IDLE) &&
       departmentsRef.current &&
       departmentsRef.current.scrollHeight > DEPARTMENT_CONTAINER_HEIGHT
     ) {
-      setShowExpandButton(true);
+      setEnabledExpand(true);
     }
-  }, [showExpandButton, state]);
+  }, [enabledExpand, state]);
 
   useEffect(() => {
     window.addEventListener('scroll', handleScrolledToBottom);
@@ -108,7 +108,7 @@ const ProductList = () => {
               ))}
             </Flex>
           </Collapse>
-          {showExpandButton && (
+          {
             <Tooltip label={showAllDepartments ? 'Collapse' : 'Expand'}>
               <IconButton
                 size="lg"
@@ -116,10 +116,11 @@ const ProductList = () => {
                 icon={
                   showAllDepartments ? <ChevronUpIcon /> : <ChevronDownIcon />
                 }
+                isDisabled={!enabledExpand}
                 onClick={handleToggleDepartments}
               />
             </Tooltip>
-          )}
+          }
         </Flex>
 
         <Divider mt={8} borderColor="border" />
