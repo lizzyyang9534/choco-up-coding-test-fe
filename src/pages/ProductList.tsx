@@ -23,8 +23,7 @@ import { useCallback, useEffect, useRef, useState } from 'react';
 import { OVERVIEW } from '../constants/productList';
 import LoadingCard from '../components/LoadingCard';
 import * as R from 'ramda';
-import TopButton from '../components/TopButton';
-import BottomButton from '../components/BottomButton';
+import ScrollButton from '../components/ScrollButton';
 
 const DEPARTMENT_CONTAINER_HEIGHT = 36;
 
@@ -46,12 +45,6 @@ const ProductList = () => {
   const handleToggleDepartments = () =>
     setShowAllDepartments(!showAllDepartments);
 
-  const scrollTo = (direction: 'top' | 'bottom') => {
-    window.scrollTo({
-      top: direction === 'top' ? 0 : document.body.scrollHeight,
-      behavior: 'smooth',
-    });
-  };
   const handleScrolledToBottom = useCallback(() => {
     if (
       selectedDepartment === OVERVIEW &&
@@ -148,8 +141,8 @@ const ProductList = () => {
       </Box>
 
       <Flex direction="column" gap={2} pos="fixed" right={10} bottom={10}>
-        <TopButton onClick={() => scrollTo('top')} />
-        <BottomButton onClick={() => scrollTo('bottom')} />
+        <ScrollButton direction="top" />
+        <ScrollButton direction="bottom" />
       </Flex>
     </Box>
   );
